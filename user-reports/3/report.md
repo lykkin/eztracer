@@ -1,6 +1,53 @@
-A user has a custom work queue that they are using to schedule tasks between traces.
-It appears that when using the timer instrumentation, it is conflating segments in
-traces that are using the queue.
+A user reported that the tracer produced a trace with a segment that has a negative
+exclusive time. The user has provided the serialized trace, but is unable to consistently
+reproduce the issue.
 
-The user was able to reproduce the issue consistently - the adjacent `repro.js` file
-contains an example, including their homegrown work queue in the `werkQ.js` file.
+```json
+{
+  "name": "user query",
+  "trace": {
+    "name": "test trace",
+    "startTime": 1563222458153,
+    "attributes": {},
+    "totalDuration": 42,
+    "exclusiveDuration": -2,
+    "children": [
+      {
+        "name": "user query",
+        "startTime": 1563222458153,
+        "attributes": {},
+        "totalDuration": 33,
+        "exclusiveDuration": 11,
+        "children": [
+          {
+            "name": "external",
+            "startTime": 1563222458153,
+            "attributes": {},
+            "totalDuration": 5,
+            "exclusiveDuration": 0,
+            "children": [
+              {
+                "name": "timeout",
+                "startTime": 1563222458153,
+                "attributes": {},
+                "totalDuration": 11,
+                "exclusiveDuration": 11,
+                "children": []
+              },
+              {
+                "name": "query",
+                "startTime": 1563222458169,
+                "attributes": {},
+                "totalDuration": 11,
+                "exclusiveDuration": 11,
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "attributes": {}
+}
+```

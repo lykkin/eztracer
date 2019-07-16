@@ -1,7 +1,6 @@
 'use strict'
 
 const Trace = require('./lib/tracer/trace')
-const Tracer = require('./lib/tracer')
 
 const INSTRUMENTATION = require('./lib/instrumentation')
 

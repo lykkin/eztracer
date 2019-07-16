@@ -12,8 +12,8 @@ class WerkQ {
     return this.executeTick(currentTick) 
   }
 
-  enqueueTask(cb) {
-    this.queue.push(cb)
+  enqueueTask(task) {
+    this.queue.push(task)
     if (!this.tickScheduled) {
       this.tickScheduled = true
       setImmediate(this.scheduleTick.bind(this))
