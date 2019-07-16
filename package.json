@@ -1,0 +1,9 @@
+{
+  "name": "ez-tracer",
+  "description": "Produces most of the data you are interested in",
+  "devDependencies": {
+    "tap": "^12.6.1"
+  },
+  "dependencies": {
+  }
+}
